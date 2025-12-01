@@ -59,7 +59,7 @@ function Home() {
     ];
 
     return (
-        <Layout agentMode="recommendations">
+        <Layout>
             <img
                 ref={bgRef}
                 className="background-home"

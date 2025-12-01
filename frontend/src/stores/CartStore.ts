@@ -25,6 +25,8 @@ const CartStore = create<CartStore>()(
             addToCart: (item) => {
                 const { cart } = get();
 
+                console.log(item);
+
                 const normalizedCustomizations =
                     item.customizations && item.customizations.length > 0
                         ? item.customizations
@@ -38,6 +40,8 @@ const CartStore = create<CartStore>()(
                         (p.customKey ?? buildCustomKey(p.codproducto, p.customizations)) ===
                         customKey
                 );
+
+                console.log(existingIndex, customKey, normalizedCustomizations);
 
                 if (existingIndex >= 0) {
                     set({

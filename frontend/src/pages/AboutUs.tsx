@@ -3,7 +3,7 @@ import "./AboutUs.css";
 
 function AboutUs() {
     return (
-        <Layout className="wrapper">
+        <Layout className="wrapper" agentMode="Support">
             <div className="wrapper__container">
                 <h2 id="mission" className="wrapper__title">
                     Sobre Nosotros

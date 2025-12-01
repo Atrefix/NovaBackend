@@ -88,6 +88,10 @@
     font-size: 0.875rem;
 }
 
+.pedidos__text {
+    color: var(--color-dark);
+}
+
 /* RESPONSIVE DESIGN */
 @media screen and (max-width: 768px) {
     .perfil__content__data__actions {

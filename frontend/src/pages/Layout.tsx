@@ -10,7 +10,7 @@ type LayoutProps = {
     agentMode?: AgentIAMode | "none";
 };
 
-function Layout({ children, className, agentMode = "Support" }: LayoutProps) {
+function Layout({ children, className, agentMode = "recommendations" }: LayoutProps) {
     return (
         <>
             <Header />

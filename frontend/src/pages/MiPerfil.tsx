@@ -232,14 +232,18 @@ function MiPerfil() {
                             />
                             <ViewInfoUser
                                 title="Fecha de Nacimiento"
-                                value={new Date(profileData.fechaNacimiento).toLocaleDateString(
-                                    "es-ES",
-                                    {
-                                        day: "2-digit",
-                                        month: "2-digit",
-                                        year: "numeric",
-                                    }
-                                )}
+                                value={
+                                    editable
+                                        ? profileData.fechaNacimiento
+                                        : new Date(profileData.fechaNacimiento).toLocaleDateString(
+                                              "es-ES",
+                                              {
+                                                  day: "2-digit",
+                                                  month: "2-digit",
+                                                  year: "numeric",
+                                              }
+                                          )
+                                }
                                 editable={editable}
                                 onChange={handleProfileFieldChange("fechaNacimiento")}
                                 inputType="date"
@@ -248,7 +252,11 @@ function MiPerfil() {
                                 title="Teléfono"
                                 value={profileData.telefono}
                                 editable={editable}
-                                onChange={handleProfileFieldChange("telefono")}
+                                onChange={(value) => {
+                                    if (/^\d*$/.test(value)) {
+                                        handleProfileFieldChange("telefono")(value);
+                                    }
+                                }}
                             />
                             <ViewInfoUser
                                 title="País"
@@ -281,10 +289,12 @@ function MiPerfil() {
                         </TabPanel>
 
                         <TabPanel eventKey="pedidos">
-                            {isLoadingPurchases && <p>Cargando historial de compras...</p>}
+                            {isLoadingPurchases && (
+                                <p className="pedidos__text">Cargando historial de compras...</p>
+                            )}
 
                             {!isLoadingPurchases && purchases.length === 0 && (
-                                <p>No tienes compras registradas aún.</p>
+                                <p className="pedidos__text">No tienes compras registradas aún.</p>
                             )}
 
                             {!isLoadingPurchases && purchases.length > 0 && (

@@ -7,6 +7,7 @@ import CartStore from "../stores/CartStore";
 import ToastStore from "../stores/ToastStore";
 
 type IAProduct = {
+    idproducto: number;
     codproducto: string;
     nombre: string;
     categoria?: string;
@@ -205,16 +206,17 @@ function AgentIA({ mode = "recommendations" }: AgentIAProps) {
 
         const imageUrl = getProductImage(product);
 
-        addToCart({
-            codproducto: product.codproducto,
-            nombre: product.nombre,
-            precioventa: Number.isFinite(price) ? price : 0,
-            imageUrl,
-        });
         showToast({
             title: "Pochi, ¡Esta Contento!",
             message: "¡Pochi agradece que hayas elegido su recomendación!",
             type: "success",
+        });
+        addToCart({
+            imageUrl,
+            precioventa: Number.isFinite(price) ? price : 0,
+            nombre: product.nombre,
+            codproducto: product.codproducto,
+            idProducto: product.idproducto,
         });
 
         triggerPochiMood(Math.random() > 0.5 ? "happy" : "emotional", true);

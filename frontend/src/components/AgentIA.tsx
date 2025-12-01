@@ -7,7 +7,7 @@ import CartStore from "../stores/CartStore";
 import ToastStore from "../stores/ToastStore";
 
 type IAProduct = {
-    idproducto: number;
+    idProducto: number;
     codproducto: string;
     nombre: string;
     categoria?: string;
@@ -216,7 +216,7 @@ function AgentIA({ mode = "recommendations" }: AgentIAProps) {
             precioventa: Number.isFinite(price) ? price : 0,
             nombre: product.nombre,
             codproducto: product.codproducto,
-            idProducto: product.idproducto,
+            idProducto: product.idProducto,
         });
 
         triggerPochiMood(Math.random() > 0.5 ? "happy" : "emotional", true);

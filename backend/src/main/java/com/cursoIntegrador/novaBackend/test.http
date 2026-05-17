@@ -1,0 +1,232 @@
+// ZONA DE PRUEBAS HTTP
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "gaylin773@gmail.com",
+  "password": "prueba123"
+}
+
+### Endpoint Protegido
+GET http://localhost:8080/auth/protectedTest
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgxMDk2LCJleHAiOjE3NjMwODQ2OTZ9.zY5_wqUbv0mx0Ob2JdOgzGLHuv3iGndeptbDdnqHt6I
+
+### Registro
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "pruebinii@gmail.com",
+  "password": "prueba123"
+}
+
+### Logout
+POST http://localhost:8080/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbG9sbWEyMDgwQGdtYWlsLmNvbSIsImlhdCI6MTc2MTI3NDc0NCwiZXhwIjoxNzYxMjc4MzQ0fQ.bUKRPPyDQspEXiZBD09yiJuPpNJ952uCYptz1PHXh10
+
+### Recuperar contraseña - envia token
+POST http://localhost:8080/auth/recuperar
+Content-Type: application/json
+
+{
+  "email": "angelolma2080@gmail.com"
+}
+
+### Cambiar contraseña con token
+POST http://localhost:8080/auth/cambiar-password
+Content-Type: application/json
+
+{
+  "email": "angelolma2080@gmail.com",
+  "token": "d1364738-e432-46f7-bdd2-3cd17aff81cf",
+  "nuevaPassword": "prueba123"
+}
+
+### Listar notificaciones de un usuario
+GET http://localhost:8080/notificaciones/listar
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgxMDk2LCJleHAiOjE3NjMwODQ2OTZ9.zY5_wqUbv0mx0Ob2JdOgzGLHuv3iGndeptbDdnqHt6I
+
+### Obtener todos los productos
+GET http://localhost:8080/products/getAllProducts
+
+### Agregar un nuevo producto (solo ADMIN)
+POST http://localhost:8080/products/agregar
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgxNDUwLCJleHAiOjE3NjMwODUwNTB9.teMkyN8yf7X6DM1qElWJYrCSgUYzbDGke7Zcvg8vP6g
+
+{
+  "codproducto": "CAF080",
+  "nombre": "Café prueba 3",
+  "categoria": "Bebidas Calientes",
+  "stock": 45,
+  "preciocompra": 6.50,
+  "precioventa": 10.00,
+  "fechavencimiento": "2026-09-15T00:00:00"
+}
+
+
+### Eliminar producto por ID (solo ADMIN)
+DELETE http://localhost:8080/products/eliminar/18
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgxNDUwLCJleHAiOjE3NjMwODUwNTB9.teMkyN8yf7X6DM1qElWJYrCSgUYzbDGke7Zcvg8vP6g
+
+### Modificar parcialmente un producto (solo ADMIN)
+PATCH http://localhost:8080/products/modificar/12
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYxNjk2MjA2LCJleHAiOjE3NjE2OTk4MDZ9.6swrU6sI1gQ8Nd9t5TZ8IbH0bFEAyzyH0Mo91S0zSBI
+
+{
+  "nombre" : "PRUEBACCHINO XD",
+  "stock": 60,
+  "precioventa": 11.50
+}
+
+
+### Listar sucursales
+GET http://localhost:8080/sucursales/listar
+
+### Agregar una nueva sucursal
+POST http://localhost:8080/sucursales/agregar
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgwNzY5LCJleHAiOjE3NjMwODQzNjl9.hAiSuGvKpkGMGlG03E9qEiJVgRbBWhtd41rEVS5QeMM
+
+{
+  "nombre": "Sucursal Pepito 2",
+  "direccion": "Calle Pepeeeee 1234"
+}
+
+### Eliminar sucursal por ID (solo ADMIN)
+DELETE http://localhost:8080/sucursales/eliminar/12
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYxNzAwOTk5LCJleHAiOjE3NjE3MDQ1OTl9.5hdCmqxsBtK3uSC3Mnanmh6323vObbffNkZZ2yaEm7o
+
+
+### Modificar parcialmente una sucursal (solo ADMIN)
+PATCH http://localhost:8080/sucursales/modificar/14
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYxNzAwOTk5LCJleHAiOjE3NjE3MDQ1OTl9.5hdCmqxsBtK3uSC3Mnanmh6323vObbffNkZZ2yaEm7o
+
+{
+  "nombre": "Sucursal Norte Renovada"
+}
+
+### Exportar Excel de cuentas (solo ADMIN)
+GET http://localhost:8080/accounts/export
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmluaUBnbWFpbC5jb20iLCJpYXQiOjE3NjMwODAzMzYsImV4cCI6MTc2MzA4MzkzNn0.nXV4bLBnm1eWoM0b5du27xcwroEdjgKz0H1HiPyOUt8
+
+### Listar cuentas (solo ADMIN)
+GET http://localhost:8080/accounts/listar
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0NTcyNTk3LCJleHAiOjE3NjQ1NzYxOTd9.x9Cb-upKRWydGw0B7r5B4zn2Qhj5jjqENHSKLtGytIQ
+
+### Ingresar review como invitado | EndPoint libre
+POST http://localhost:8080/reviews/addReviewGuest
+Content-Type: application/json
+
+{
+  "nombre": "Pruebini",
+  "email": "Pruebini@gmail.com",
+  "cuerpo": "HORRENDO",
+  "puntuacion": 1
+}
+
+### Ingresar review | EndPoint con token
+POST http://localhost:8080/reviews/addReview
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0MjU2NzE4LCJleHAiOjE3NjQyNjAzMTh9.WuDitlzSm0jqVRvymJ90MGy85k-rjhUH1nuuuZf4qB0
+
+{
+  "cuerpo": "Tengo sueño",
+  "puntuacion": 2
+}
+
+### Obtener todas las reseñas
+GET http://localhost:8080/reviews/getReviews
+
+
+### Solicitar historial de compras
+GET http://localhost:8080/purchases/getPurchases
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0Mzg3OTIxLCJleHAiOjE3NjQzOTE1MjF9.JOedHlXrcDMNi8tW3ifK-gf-ernGfTlZdCSzyRbajVw
+
+
+### Registrar nueva compra
+POST http://localhost:8080/purchases/newPurchase
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0Mzg3OTIxLCJleHAiOjE3NjQzOTE1MjF9.JOedHlXrcDMNi8tW3ifK-gf-ernGfTlZdCSzyRbajVw
+
+{
+  "montoProcesado": 80.5,
+  "productos": [
+    {
+      "idProducto" : 3,
+      "quantity" : 5,
+      "instructions" : "Descafeinado"
+    },
+    {
+      "idProducto" : 2,
+      "quantity" : 5
+    }
+    ,
+    {
+      "idProducto" : 1,
+      "quantity" : 3,
+      "instructions" : "Sin azucar"
+    }
+  ],
+  "cityDelivery" : "Lima",
+  "addressDelivery" : "Los Olivos"
+}
+
+### Actualizar perfil del usuario autenticado
+PUT http://localhost:8080/accounts/update-profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0MjU2NTI5LCJleHAiOjE3NjQyNjAxMjl9.evrYjNO_mD7HspfkkcDOBHH4QKtoDiIuqGnK9LVhAt4
+
+{
+  "alias": "Aylin",
+  "direccion": "Av. Principal 123",
+  "pais": "Perú",
+  "fechaNacimiento": "1990-05-12"
+}
+
+### Consultar a la IA | Modo recomendaciones (Nova clásico)
+POST http://localhost:8080/IA/consulta
+Content-Type: application/json
+
+{
+  "prompt": "Nova tengo diabetes",
+  "mode" : "recommendations"
+}
+
+### Consultar a la IA | Modo soporte al cliente
+POST http://localhost:8080/IA/consulta
+Content-Type: application/json
+
+{
+  "prompt": "¿Cual es su numero de contacto?",
+  "mode" : "Support"
+}
+
+### Obtener reporte de productos
+GET http://localhost:8080/products/getReport
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzc4ODAyODAzLCJleHAiOjE3Nzg4MDY0MDN9.hg9R-5w7uO6SuMVFdNh2HN4Vk0Lv-T3wgv2c6CPLSjs
+
+### Obtener reporte de cuentas de usuario
+GET http://localhost:8080/accounts/getReport
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0NTI1MDc4LCJleHAiOjE3NjQ1Mjg2Nzh9.rkRfulLX6jIlbR9bFrZzMuCxK23fhF1HFVGE1xdHoEw
+
+
+### Obtener reporte de sucursales
+GET http://localhost:8080/sucursales/getReport
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0NTI1MDc4LCJleHAiOjE3NjQ1Mjg2Nzh9.rkRfulLX6jIlbR9bFrZzMuCxK23fhF1HFVGE1xdHoEw
+
+
+### Cambiar rol de usuario
+PATCH http://localhost:8080/accounts/changeRole
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0NTcyNTk3LCJleHAiOjE3NjQ1NzYxOTd9.x9Cb-upKRWydGw0B7r5B4zn2Qhj5jjqENHSKLtGytIQ
+Content-Type: application/json
+
+{
+  "idcuenta": 9,
+  "rol": "ADMIN"
+}

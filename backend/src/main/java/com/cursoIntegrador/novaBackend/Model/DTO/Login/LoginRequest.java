@@ -1,0 +1,11 @@
+package com.cursoIntegrador.novaBackend.Model.DTO.Login;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class LoginRequest {
+    private String username;
+    private String password;
+}

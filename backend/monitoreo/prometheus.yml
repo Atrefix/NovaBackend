@@ -2,7 +2,7 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-- job_name: lepettite
+- job_name: novaBackend
   metrics_path: '/actuator/prometheus'
   static_configs:
       - targets: ['host.docker.internal:8080']

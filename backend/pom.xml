@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cursoIntegrador</groupId>
-	<artifactId>lePettiteCoffe</artifactId>
+	<artifactId>novaBackend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lePettiteCoffe</name>
+	<name>novaBackend</name>
 	<description>Proyecto del curso integrador</description>
 	<url/>
 	<licenses>

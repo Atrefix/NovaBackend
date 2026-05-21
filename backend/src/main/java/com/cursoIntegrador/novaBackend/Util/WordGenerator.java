@@ -20,7 +20,8 @@ public class WordGenerator {
             XWPFRun imageRun = imageParagraph.createRun();
 
             try (InputStream imageStream = URI.create(
-                    "https://images.vexels.com/media/users/3/305727/isolated/preview/4695ea7b3f321f8cfc8c7ad0a5577133-circulo-de-cafe.png")
+                    //"https://images.vexels.com/media/users/3/305727/isolated/preview/4695ea7b3f321f8cfc8c7ad0a5577133-circulo-de-cafe.png")
+                    "http://localhost:8080/images/productos/NovaLogo.jpeg")
                     .toURL().openStream()) {
                 imageRun.addPicture(
                         imageStream,
@@ -50,14 +51,14 @@ public class WordGenerator {
 
             bodyRun.setText("Hola, " + email + " ☕");
             bodyRun.addBreak();
-            bodyRun.setText("¡Gracias por unirte a nuestra comunidad de amantes del café!");
+            bodyRun.setText("¡Gracias por unirte a nuestra comunidad amante de la tecnología!");
             bodyRun.addBreak();
             bodyRun.addBreak();
 
             bodyRun.setText(
-                    "En NovaTech, nos encanta ofrecerte una experiencia única llena de aroma y sabor.");
+                    "En NovaTech, nos encanta ofrecerte una experiencia única confianza y seguridad.");
             bodyRun.addBreak();
-            bodyRun.setText("Desde ahora podrás disfrutar de nuestros productos, promociones y novedades especiales.");
+            bodyRun.setText("Desde ahora eres parte de la familia NovaTech, disfruta de promociones y novedades especiales.");
             bodyRun.addBreak();
             bodyRun.addBreak();
 
@@ -78,7 +79,7 @@ public class WordGenerator {
             bodyRun.addBreak();
 
             bodyRun.setBold(true);
-            bodyRun.setText("Con cariño, el equipo de NovaTech ☕");
+            bodyRun.setText("Con cariño, el equipo de NovaTech 👁️");
             bodyRun.setBold(false);
 
             document.write(out);
@@ -98,7 +99,8 @@ public class WordGenerator {
             XWPFRun imageRun = imageParagraph.createRun();
 
             try (InputStream imageStream = URI.create(
-                    "https://images.vexels.com/media/users/3/305727/isolated/preview/4695ea7b3f321f8cfc8c7ad0a5577133-circulo-de-cafe.png")
+                    //"https://images.vexels.com/media/users/3/305727/isolated/preview/4695ea7b3f321f8cfc8c7ad0a5577133-circulo-de-cafe.png")
+                    "http://localhost:8080/images/productos/NovaLogo.jpeg")
                     .toURL().openStream()) {
                 imageRun.addPicture(
                         imageStream,

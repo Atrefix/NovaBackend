@@ -18,7 +18,7 @@ POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
-  "username": "prueba@gmail.com",
+  "username": "testuser@gmail.com",
   "password": "prueba123"
 }
 
@@ -47,7 +47,7 @@ Content-Type: application/json
 ### Listar notificaciones de un usuario
 GET http://localhost:8080/notificaciones/listar
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzYzMDgxMDk2LCJleHAiOjE3NjMwODQ2OTZ9.zY5_wqUbv0mx0Ob2JdOgzGLHuv3iGndeptbDdnqHt6I
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzc5MzgxOTcwLCJleHAiOjE3NzkzODU1NzB9.gLyAibyNlw12wVdsYz7D2RAFOeUCu9MiRhjZF5mJasU
 
 ### Obtener todos los productos
 GET http://localhost:8080/products/getAllProducts
@@ -124,20 +124,20 @@ POST http://localhost:8080/reviews/addReviewGuest
 Content-Type: application/json
 
 {
-  "nombre": "Pruebini",
-  "email": "Pruebini@gmail.com",
-  "cuerpo": "HORRENDO",
-  "puntuacion": 1
+  "nombre": "Angelo",
+  "email": "angelolma2080@gmail.com",
+  "cuerpo": "Buenooo",
+  "puntuacion": 5
 }
 
 ### Ingresar review | EndPoint con token
 POST http://localhost:8080/reviews/addReview
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0MjU2NzE4LCJleHAiOjE3NjQyNjAzMTh9.WuDitlzSm0jqVRvymJ90MGy85k-rjhUH1nuuuZf4qB0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzc5MzgyOTAwLCJleHAiOjE3NzkzODY1MDB9.GgIE-UZNxZzJGM9XW0ZDohZ0_OfPvYWXaCOJD_PRpAc
 
 {
-  "cuerpo": "Tengo sueño",
-  "puntuacion": 2
+  "cuerpo": "Excelentes camaras",
+  "puntuacion": 5
 }
 
 ### Obtener todas las reseñas
@@ -152,29 +152,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tI
 ### Registrar nueva compra
 POST http://localhost:8080/purchases/newPurchase
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzY0Mzg3OTIxLCJleHAiOjE3NjQzOTE1MjF9.JOedHlXrcDMNi8tW3ifK-gf-ernGfTlZdCSzyRbajVw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXlsaW43NzNAZ21haWwuY29tIiwiaWF0IjoxNzc5MzgyOTAwLCJleHAiOjE3NzkzODY1MDB9.GgIE-UZNxZzJGM9XW0ZDohZ0_OfPvYWXaCOJD_PRpAc
 
 {
-  "montoProcesado": 80.5,
+  "montoProcesado": 120.5,
   "productos": [
     {
       "idProducto" : 3,
       "quantity" : 5,
-      "instructions" : "Descafeinado"
+      "instructions" : "No hay cableado"
     },
     {
-      "idProducto" : 2,
+      "idProducto" : 9,
       "quantity" : 5
     }
     ,
     {
       "idProducto" : 1,
       "quantity" : 3,
-      "instructions" : "Sin azucar"
+      "instructions" : "Con memoria extraible"
     }
   ],
   "cityDelivery" : "Lima",
-  "addressDelivery" : "Los Olivos"
+  "addressDelivery" : "Ancon"
 }
 
 ### Actualizar perfil del usuario autenticado

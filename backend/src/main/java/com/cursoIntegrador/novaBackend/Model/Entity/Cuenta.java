@@ -46,7 +46,7 @@ public class Cuenta {
     private LocalDateTime fechaRegistro;
 
     @Column(name = "alias", nullable = true)
-    private String alias;
+    private String alias = "Nameless User";
 
     @Column(name = "direccion", length = 200, nullable = true)
     private String direccion = "No establecida";

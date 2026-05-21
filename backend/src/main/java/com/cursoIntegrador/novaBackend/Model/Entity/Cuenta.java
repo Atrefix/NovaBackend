@@ -58,7 +58,7 @@ public class Cuenta {
     private String pais = "No establecido";
 
     @Column(name = "telefono", length = 12, nullable = true)
-    private String telefono = "No establecido";
+    private String telefono = null;
 
     public Cuenta(Integer idcuenta, String email, String password, String rol, String estado,
             LocalDateTime fechaRegistro, String telefono) {

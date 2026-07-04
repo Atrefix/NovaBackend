@@ -72,7 +72,37 @@ CREATE TABLE Producto (
     Stock            INTEGER DEFAULT 0 CHECK (stock >= 0),
     PrecioCompra     NUMERIC(12,2),
     PrecioVenta      NUMERIC(12,2),
-    FechaVencimiento DATE
+    FechaVencimiento DATE,
+    tipo_producto    VARCHAR(30) NOT NULL DEFAULT 'PRODUCTO_TERMINADO'
+);
+
+-- (8a) TABLA Receta (Bill of Materials)
+CREATE TABLE bill_of_materials (
+    id           SERIAL PRIMARY KEY,
+    nombre       VARCHAR(100) NOT NULL,
+    descripcion  TEXT,
+    idproducto   INTEGER NOT NULL UNIQUE REFERENCES Producto(IdProducto) ON DELETE CASCADE
+);
+
+-- (8b) TABLA Detalle Receta (BOM Detail)
+CREATE TABLE bom_detail (
+    id               SERIAL PRIMARY KEY,
+    id_bom           INTEGER NOT NULL REFERENCES bill_of_materials(id) ON DELETE CASCADE,
+    idproducto       INTEGER NOT NULL REFERENCES Producto(IdProducto) ON DELETE RESTRICT,
+    quantity_required INTEGER NOT NULL CHECK (quantity_required > 0)
+);
+
+-- (8c) TABLA Orden de Producción
+CREATE TABLE production_order (
+    id             SERIAL PRIMARY KEY,
+    idproducto     INTEGER NOT NULL REFERENCES Producto(IdProducto) ON DELETE RESTRICT,
+    quantity       INTEGER NOT NULL CHECK (quantity > 0),
+    status         VARCHAR(30) NOT NULL DEFAULT 'PENDIENTE',
+    date_created   TIMESTAMP NOT NULL DEFAULT now(),
+    date_started   TIMESTAMP,
+    date_completed TIMESTAMP,
+    idcuenta       INTEGER NOT NULL REFERENCES Cuenta(IdCuenta) ON DELETE RESTRICT,
+    idsucursal     INTEGER NOT NULL REFERENCES Sucursal(IdSucursal) ON DELETE RESTRICT
 );
 
 -- (9) TABLA Venta

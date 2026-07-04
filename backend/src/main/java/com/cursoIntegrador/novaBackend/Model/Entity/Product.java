@@ -43,4 +43,9 @@ public class Product {
     private BigDecimal precioventa;
 
     private LocalDateTime fechavencimiento;
+
+    @NotNull(message = "El tipo de producto es obligatorio")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_producto", nullable = false)
+    private ProductType tipoProducto = ProductType.PRODUCTO_TERMINADO;
 }

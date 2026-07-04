@@ -1,0 +1,179 @@
+// PRUEBAS DE FLUJO DE PRODUCCIÓN HTTP
+
+### 1. Login de Administrador (Jefe de Planta)
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "gaylin773@gmail.com",
+  "password": "prueba123"
+}
+
+// Nota: Copiar el token Bearer retornado y pegarlo en las siguientes solicitudes de autorización.
+
+### 2. Registrar Materia Prima 1: Café en Grano
+POST http://localhost:8080/products/agregar
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "codproducto": "RAW001",
+  "nombre": "Café en Grano",
+  "categoria": "Insumos",
+  "stock": 0,
+  "preciocompra": 5.00,
+  "precioventa": 8.00,
+  "fechavencimiento": "2026-12-31T00:00:00",
+  "tipoProducto": "MATERIA_PRIMA"
+}
+
+
+### 3. Registrar Materia Prima 2: Leche Entera
+POST http://localhost:8080/products/agregar
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "codproducto": "RAW002",
+  "nombre": "Leche Entera",
+  "categoria": "Insumos",
+  "stock": 0,
+  "preciocompra": 2.50,
+  "precioventa": 4.00,
+  "fechavencimiento": "2026-12-31T00:00:00",
+  "tipoProducto": "MATERIA_PRIMA"
+}
+
+
+### 4. Registrar Producto Terminado: Capuchino Especial
+POST http://localhost:8080/products/agregar
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "codproducto": "PROD001",
+  "nombre": "Capuchino Especial",
+  "categoria": "Cafés",
+  "stock": 0,
+  "preciocompra": 3.00,
+  "precioventa": 12.00,
+  "fechavencimiento": "2026-06-30T00:00:00",
+  "tipoProducto": "PRODUCTO_TERMINADO"
+}
+
+
+### 5. Crear Receta (BOM) para "Capuchino Especial"
+// Requiere: 1 unidad de Café en Grano (RAW001) y 2 unidades de Leche (RAW002)
+POST http://localhost:8080/recipes/create
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "nombre": "Receta Oficial Capuchino",
+  "descripcion": "Fórmula estándar de elaboración para Capuchino Especial de la casa",
+  "product": {
+    "idproducto": 3 -- Colocar el ID generado para el Capuchino Especial
+  },
+  "details": [
+    {
+      "ingredient": {
+        "idproducto": 1 -- Colocar el ID generado para Café en Grano
+      },
+      "quantityRequired": 1
+    },
+    {
+      "ingredient": {
+        "idproducto": 2 -- Colocar el ID generado para Leche Entera
+      },
+      "quantityRequired": 2
+    }
+  ]
+}
+
+
+### 6. Listar todas las recetas
+GET http://localhost:8080/recipes/getAll
+Authorization: Bearer <TOKEN>
+
+
+### 7. Abastecer Materia Prima (Simular compra a proveedores)
+// Aumenta el stock de Café (RAW001) en 50 unidades y Leche (RAW002) en 100 unidades.
+POST http://localhost:8080/purchases/newPurchase
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "montoProcesado": 500.0,
+  "productos": [
+    {
+      "idProducto" : 1, -- Café en Grano
+      "quantity" : 50
+    },
+    {
+      "idProducto" : 2, -- Leche Entera
+      "quantity" : 100
+    }
+  ],
+  "cityDelivery" : "Lima",
+  "addressDelivery" : "Almacén Central Planta 1"
+}
+
+
+### 8. Crear una Orden de Producción (Estado inicial: PENDIENTE)
+// Solicitar fabricar 10 unidades de Capuchino Especial (PROD001) en la Sucursal ID 1
+POST http://localhost:8080/production-orders/newOrder
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "product": {
+    "idproducto": 3 -- Capuchino Especial
+  },
+  "quantity": 10,
+  "branch": {
+    "Idsucursal": 1 -- Sucursal / Planta
+  }
+}
+
+
+### 9. Iniciar la Orden de Producción (Transición a EN_PROCESO)
+// Consumirá: 10 unidades de Café (RAW001) y 20 unidades de Leche (RAW002) del inventario
+PATCH http://localhost:8080/production-orders/start/1
+Authorization: Bearer <TOKEN>
+
+
+### 10. Completar la Orden de Producción (Transición a COMPLETADO)
+// Incrementará el stock del Capuchino Especial (PROD001) en 10 unidades
+PATCH http://localhost:8080/production-orders/complete/1
+Authorization: Bearer <TOKEN>
+
+
+### 11. Obtener todas las órdenes de producción
+GET http://localhost:8080/production-orders/getAll
+Authorization: Bearer <TOKEN>
+
+
+### 12. Obtener reporte en PDF de Órdenes de Producción (Solo ADMIN)
+GET http://localhost:8080/production-orders/getReport
+Authorization: Bearer <TOKEN>
+
+
+### 13. Agregar Control de Calidad (Reviews) para la producción completada
+POST http://localhost:8080/reviews/addReview
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "cuerpo": "Lote L-PROD001-01 aprobado. Densidad y sabor conformes con el estándar.",
+  "puntuacion": 5
+}
+
+
+### 14. Consultar a la Inteligencia Artificial (Copiloto de Producción)
+POST http://localhost:8080/IA/consulta
+Content-Type: application/json
+
+{
+  "prompt": "¿Qué recetas tenemos registradas y qué insumos consumen?",
+  "mode" : "recommendations"
+}

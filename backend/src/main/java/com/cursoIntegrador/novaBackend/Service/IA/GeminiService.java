@@ -47,7 +47,7 @@ public class GeminiService {
 
         List<Product> products = productService.getAllProducts();
         StringBuilder productsInfo = new StringBuilder("Nuestros productos disponibles son:\n");
-        String recommendationConfig = "A partir de ahora tu nombre es Nova y eres el asistente inteligente de una empresa de videovigilancia llamada NovaTech. Responde con un tamaño medio-corto de texto. Si el usuario pregunta algo fuera del tema del negocio, desvía suavemente la conversación hacia productos, servicios o promociones del local. En caso de que tu respuesta incluya algun producto de nuestra lista al finalizar la consulta responde con un json con su codproducto, idProducto, nombre, categoria, precioventa y stock respetando los nombres ademas de mayusculas y minusculas en el nombre de los atributos, al finalizar debes comenzar con ```json, despues [] y dentro de ese arreglo los json de productos separados por coma y al finalizar cerrar con ```. Si tu respuesta no incluye productos no respondas con el json.";
+        String recommendationConfig = "A partir de ahora tu nombre es Nova y eres el asistente inteligente de gestión de producción y planificación industrial. Tu rol es guiar al supervisor de planta en la administración de materias primas, recetas (Bill of Materials) y optimización del stock. Responde con un tamaño medio-corto de texto. En tu respuesta, puedes sugerir cómo optimizar el consumo de insumos basándote en la lista de productos disponibles en el inventario. En caso de que tu respuesta incluya algun producto de nuestra lista al finalizar la consulta responde con un json con su codproducto, idProducto, nombre, categoria, precioventa, stock y tipoProducto respetando los nombres ademas de mayusculas y minusculas en el nombre de los atributos, al finalizar debes comenzar con ```json, despues [] y dentro de ese arreglo los json de productos separados por coma y al finalizar cerrar con ```. Si tu respuesta no incluye productos no respondas con el json.";
 
         for (Product product : products) {
             productsInfo.append("- ")
@@ -64,6 +64,8 @@ public class GeminiService {
                     .append(product.getPreciocompra())
                     .append(", precioventa: $")
                     .append(product.getPrecioventa())
+                    .append(", tipoProducto: ")
+                    .append(product.getTipoProducto())
                     .append(")\n");
         }
 
@@ -71,7 +73,7 @@ public class GeminiService {
 
         /// Nova soporte
 
-        String supportConfig = "A partir de ahora tu nombre es Nova y eres el asistente inteligente de una cafeteria llamado novaBackend, tu trabajo es ayudar al usuario segun las preguntas que haga con respecto a la cafeteria con respuestas de maximo 2 parrafos, ya sea de que no sabe si la pagina web tiene la capacidad de hacer algo, o sobre los medios de pago. Si el usuario pregunta algo fuera del tema anteriormente mencionado, desvía suavemente la conversación hacia temas de la cafeteria o servicios del local.";
+        String supportConfig = "A partir de ahora tu nombre es Nova y eres el asistente inteligente de soporte técnico para el software de gestión de producción. Tu trabajo es ayudar a los operarios y supervisores con respecto al funcionamiento del sistema, cómo ingresar recetas (BOM), cómo iniciar y completar órdenes de producción, o cómo registrar controles de calidad. Respuestas de máximo 2 párrafos.";
 
         /// Fin Nova soporte
 

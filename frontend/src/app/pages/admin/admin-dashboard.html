@@ -1,0 +1,1425 @@
+<div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col md:flex-row relative" @fadeIn>
+  <aside
+    class="w-full md:w-64 bg-slate-900 border-r border-slate-850 flex flex-col justify-between shrink-0"
+  >
+    <div class="p-6">
+      <div class="flex items-center gap-3 mb-8">
+        <div
+          class="w-8 h-8 rounded-full bg-gradient-to-tr from-violet-600 to-indigo-650 flex items-center justify-center text-white shadow-md"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+            />
+          </svg>
+        </div>
+        <div>
+          <span
+            class="text-md font-bold tracking-wider bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent"
+            >NOVA OPERATIONS</span
+          >
+          <span class="text-[9px] block text-slate-500 uppercase tracking-widest font-bold"
+            >Panel de Control</span
+          >
+        </div>
+      </div>
+
+      <nav class="space-y-1">
+        <button
+          (click)="changeTab('overview')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'overview'"
+          [class.text-violet-450]="currentTab() === 'overview'"
+          [class.text-slate-400]="currentTab() !== 'overview'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'overview'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+            />
+          </svg>
+          Resumen General
+        </button>
+
+        <button
+          (click)="changeTab('products')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'products'"
+          [class.text-violet-450]="currentTab() === 'products'"
+          [class.text-slate-400]="currentTab() !== 'products'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'products'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+            />
+          </svg>
+          Inventario y CRUD
+        </button>
+
+        <button
+          (click)="changeTab('branches')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'branches'"
+          [class.text-violet-450]="currentTab() === 'branches'"
+          [class.text-slate-400]="currentTab() !== 'branches'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'branches'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6.75h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h18v18H3V3z"
+            />
+          </svg>
+          Plantas
+        </button>
+
+        <button
+          (click)="changeTab('recipes')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'recipes'"
+          [class.text-violet-450]="currentTab() === 'recipes'"
+          [class.text-slate-400]="currentTab() !== 'recipes'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'recipes'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5A3.375 3.375 0 0010.125 2.25H3.75m3.75 9h6m-6 3h6m-6-15a3 3 0 00-3 3v15a3 3 0 003 3h12a3 3 0 003-3V6.75a3 3 0 00-3-3h-12z"
+            />
+          </svg>
+          Recetas (BOM)
+        </button>
+
+        <button
+          (click)="changeTab('production')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'production'"
+          [class.text-violet-450]="currentTab() === 'production'"
+          [class.text-slate-400]="currentTab() !== 'production'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'production'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4 animate-pulse"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+            />
+          </svg>
+          Línea de Ensamble
+        </button>
+
+        <button
+          (click)="changeTab('users')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'users'"
+          [class.text-violet-450]="currentTab() === 'users'"
+          [class.text-slate-400]="currentTab() !== 'users'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'users'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A11.386 11.386 0 0110.089 21c-2.243 0-4.32-.647-6.074-1.763V19.13c0-2.117 1.76-3.97 3.8-3.97h3.537c2.07 0 3.8 1.87 3.8 3.97v.001zM12 7a3 3 0 11-6 0 3 3 0 016 0zm9 1.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+            />
+          </svg>
+          Cuentas y Reportes
+        </button>
+
+        <button
+          (click)="changeTab('ai')"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+          [class.bg-slate-950]="currentTab() === 'ai'"
+          [class.text-violet-450]="currentTab() === 'ai'"
+          [class.text-slate-400]="currentTab() !== 'ai'"
+          [class.hover:bg-slate-950/50]="currentTab() !== 'ai'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.813 15.904L9 21l8.982-11.761h-6.14l1.64-6.19a1.203 1.203 0 00-2.253-.33L4.26 14.502h6.14l-1.64 6.19c-.198.749.52 1.4 1.157.961L18 10.5H11.86l1.64-6.19z"
+            />
+          </svg>
+          IA DE PLANTA
+        </button>
+      </nav>
+    </div>
+
+    <div class="p-6 border-t border-slate-850">
+      <div class="flex items-center justify-between mb-4">
+        <div class="truncate pr-2">
+          <p class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">
+            Jefe de Planta
+          </p>
+          <p class="text-xs font-semibold text-slate-200 truncate">
+            {{ nova.currentUser()?.alias || nova.currentUser()?.username }}
+          </p>
+        </div>
+        <button
+          (click)="logout()"
+          class="text-rose-450 hover:text-rose-450 p-2 rounded-lg bg-rose-500/10 border border-rose-500/10 transition active:scale-95"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flex-grow p-6 md:p-10 overflow-y-auto max-h-screen relative">
+    <div class="flex items-center justify-between border-b border-slate-900 pb-4 mb-6">
+      <div>
+        <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest"
+          >Planta Industrial Nova</span
+        >
+        <h1 class="text-2xl font-black tracking-tight uppercase">
+          {{
+            currentTab() === 'overview'
+              ? 'Resumen Operativo'
+              : currentTab() === 'products'
+                ? 'Administración de Inventarios'
+                : currentTab() === 'branches'
+                  ? 'Fábricas y Centros Logísticos'
+                  : currentTab() === 'recipes'
+                    ? 'Recetas y BOM'
+                    : currentTab() === 'production'
+                      ? 'Flujo de Línea de Ensamble'
+                      : currentTab() === 'users'
+                        ? 'Cuentas y Auditorías'
+                        : 'Copiloto de Planta AI'
+          }}
+        </h1>
+      </div>
+      <button
+        (click)="loadAllData()"
+        class="p-2 bg-slate-900 hover:bg-slate-850 rounded-xl border border-slate-800 text-slate-400 hover:text-slate-200 transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+          />
+        </svg>
+      </button>
+    </div>
+
+    @if (infoMessage()) {
+      <div
+        class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs font-semibold flex items-center justify-between"
+        @fadeInUp
+      >
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>{{ infoMessage() }}</span>
+        </div>
+        <button (click)="infoMessage.set(null)" class="text-slate-400 hover:text-slate-200 text-xs">
+          Cerrar
+        </button>
+      </div>
+    }
+
+    @if (currentTab() === 'overview') {
+      <div class="space-y-8" @fadeInUp>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 shadow-sm space-y-2">
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold"
+              >Componentes Ópticos</span
+            >
+            <p class="text-3xl font-black">
+              {{ products().filter((p) => p.tipoProducto === 'MATERIA_PRIMA').length }}
+            </p>
+            <span
+              class="text-[9px] block text-slate-400 font-semibold bg-slate-950 px-2 py-0.5 rounded border border-slate-850 w-fit"
+              >En Stock</span
+            >
+          </div>
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 shadow-sm space-y-2">
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold"
+              >Modelos de Cámara</span
+            >
+            <p class="text-3xl font-black">
+              {{ products().filter((p) => p.tipoProducto === 'PRODUCTO_TERMINADO').length }}
+            </p>
+            <span
+              class="text-[9px] block text-slate-400 font-semibold bg-slate-950 px-2 py-0.5 rounded border border-slate-850 w-fit"
+              >Catálogo Activo</span
+            >
+          </div>
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 shadow-sm space-y-2">
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold"
+              >Ensamblajes Activos</span
+            >
+            <p class="text-3xl font-black text-violet-400">{{ getProcessingOrders().length }}</p>
+            <span
+              class="text-[9px] block text-slate-400 font-semibold bg-slate-950 px-2 py-0.5 rounded border border-slate-850 w-fit"
+              >En Proceso</span
+            >
+          </div>
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 shadow-sm space-y-2">
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold"
+              >Plantas de Ensamble</span
+            >
+            <p class="text-3xl font-black">{{ branches().length }}</p>
+            <span
+              class="text-[9px] block text-slate-400 font-semibold bg-slate-950 px-2 py-0.5 rounded border border-slate-850 w-fit"
+              >Sucursales</span
+            >
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-850 pb-3">
+            <div>
+              <h3 class="text-lg font-bold">Registro de Alertas y Operaciones</h3>
+              <p class="text-xs text-slate-500">
+                Notificaciones y alertas de stock de componentes.
+              </p>
+            </div>
+            <button
+              (click)="clearNotifications()"
+              class="text-xs font-bold uppercase tracking-wider text-violet-450 hover:underline bg-slate-950 border border-slate-850 px-3 py-1.5 rounded-xl transition"
+            >
+              Marcar Leídos
+            </button>
+          </div>
+
+          <div class="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+            @for (notif of notifications(); track notif.id) {
+              <div
+                class="p-3 rounded-xl border text-xs flex items-start justify-between gap-3 shadow-sm"
+                [class.bg-slate-950/80]="notif.leido"
+                [class.border-slate-850]="notif.leido"
+                [class.text-slate-400]="notif.leido"
+                [class.bg-slate-950]="!notif.leido"
+                [class.border-cyan-500/20]="!notif.leido"
+                [class.text-slate-200]="!notif.leido"
+              >
+                <div class="flex items-start gap-2">
+                  <span
+                    class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                    [class.bg-slate-700]="notif.leido"
+                    [class.bg-cyan-400]="!notif.leido"
+                    [class.animate-pulse]="!notif.leido"
+                  ></span>
+                  <p class="font-medium leading-relaxed">{{ notif.cuerpo }}</p>
+                </div>
+                <span class="text-[9px] font-mono text-slate-500 shrink-0 font-bold">{{
+                  notif.fecha | date: 'shortTime'
+                }}</span>
+              </div>
+            } @empty {
+              <div class="py-6 text-center text-slate-500 text-xs">
+                Sin notificaciones de producción pendientes.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'products') {
+      <div class="space-y-6" @fadeInUp>
+        <div
+          class="flex justify-between items-center bg-slate-900/60 p-4 border border-slate-850 rounded-2xl"
+        >
+          <p class="text-xs text-slate-400">
+            Agrega o edita componentes ópticos (materia prima) y cámaras ensambladas (producto
+            terminado).
+          </p>
+          <button
+            (click)="openAddProduct()"
+            class="bg-violet-650 hover:bg-violet-650 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition active:scale-95"
+          >
+            + Agregar Producto
+          </button>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+            <h3 class="text-base font-bold text-violet-400 border-b border-slate-850 pb-2">
+              Materias Primas (Insumos / Componentes)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-300">
+                <thead>
+                  <tr
+                    class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-850 pb-2"
+                  >
+                    <th class="py-2.5">Código</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Costo Compra</th>
+                    <th class="text-right">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (prod of products(); track prod.idproducto) {
+                    @if (prod.tipoProducto === 'MATERIA_PRIMA') {
+                      <tr class="border-b border-slate-850/60 hover:bg-slate-950/20">
+                        <td class="py-3 font-mono font-bold">{{ prod.codproducto }}</td>
+                        <td class="font-bold text-slate-200">{{ prod.nombre }}</td>
+                        <td>{{ prod.categoria }}</td>
+                        <td
+                          class="font-bold"
+                          [class.text-rose-500]="prod.stock < 10"
+                          [class.text-slate-300]="prod.stock >= 10"
+                        >
+                          {{ prod.stock }} uds
+                        </td>
+                        <td>${{ prod.preciocompra | number: '1.2-2' }}</td>
+                        <td class="text-right space-x-1">
+                          <button
+                            (click)="openEditProduct(prod)"
+                            class="text-cyan-400 hover:text-cyan-300 p-1 text-[10px] uppercase font-bold"
+                          >
+                            Editar
+                          </button>
+                          <button
+                            (click)="deleteProduct(prod.idproducto)"
+                            class="text-rose-400 hover:text-rose-350 p-1 text-[10px] uppercase font-bold"
+                          >
+                            Eliminar
+                          </button>
+                        </td>
+                      </tr>
+                    }
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+            <h3 class="text-base font-bold text-violet-400 border-b border-slate-850 pb-2">
+              Productos Terminados (Cámaras Disponibles)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-300">
+                <thead>
+                  <tr
+                    class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-850 pb-2"
+                  >
+                    <th class="py-2.5">Código</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Precio Venta</th>
+                    <th class="text-right">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (prod of products(); track prod.idproducto) {
+                    @if (prod.tipoProducto === 'PRODUCTO_TERMINADO') {
+                      <tr class="border-b border-slate-850/60 hover:bg-slate-950/20">
+                        <td class="py-3 font-mono font-bold">{{ prod.codproducto }}</td>
+                        <td class="font-bold text-slate-200">{{ prod.nombre }}</td>
+                        <td>{{ prod.categoria }}</td>
+                        <td class="font-bold">{{ prod.stock }} uds</td>
+                        <td>${{ prod.precioventa | number: '1.2-2' }}</td>
+                        <td class="text-right space-x-1">
+                          <button
+                            (click)="openEditProduct(prod)"
+                            class="text-cyan-400 hover:text-cyan-300 p-1 text-[10px] uppercase font-bold"
+                          >
+                            Editar
+                          </button>
+                          <button
+                            (click)="deleteProduct(prod.idproducto)"
+                            class="text-rose-400 hover:text-rose-350 p-1 text-[10px] uppercase font-bold"
+                          >
+                            Eliminar
+                          </button>
+                        </td>
+                      </tr>
+                    }
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'branches') {
+      <div class="space-y-6" @fadeInUp>
+        <div
+          class="flex justify-between items-center bg-slate-900/60 p-4 border border-slate-850 rounded-2xl"
+        >
+          <p class="text-xs text-slate-400">
+            Configuración de plantas de ensamblaje industrial y bodegas logísticas.
+          </p>
+          <button
+            (click)="openAddBranch()"
+            class="bg-violet-650 hover:bg-violet-650 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition active:scale-95"
+          >
+            + Agregar Planta
+          </button>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-300">
+              <thead>
+                <tr
+                  class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-850 pb-2"
+                >
+                  <th class="py-2.5">ID Sucursal</th>
+                  <th>Nombre Planta</th>
+                  <th>Dirección Física</th>
+                  <th class="text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (b of branches(); track b.idsucursal) {
+                  <tr class="border-b border-slate-850/60 hover:bg-slate-950/20">
+                    <td class="py-3 font-mono font-bold">#{{ b.idsucursal }}</td>
+                    <td class="font-bold text-slate-200">{{ b.nombre }}</td>
+                    <td>{{ b.direccion }}</td>
+                    <td class="text-right space-x-1">
+                      <button
+                        (click)="openEditBranch(b)"
+                        class="text-cyan-400 hover:text-cyan-300 p-1 text-[10px] uppercase font-bold"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        (click)="deleteBranch(b.idsucursal)"
+                        class="text-rose-400 hover:text-rose-350 p-1 text-[10px] uppercase font-bold"
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'recipes') {
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" @fadeInUp>
+        <div class="lg:col-span-2 space-y-4">
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+            <h3 class="text-lg font-bold border-b border-slate-850 pb-2 text-violet-400">
+              Recetas de Ensamblaje Registradas
+            </h3>
+
+            <div class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+              @for (rec of recipes(); track rec.idreceta) {
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-3">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-200">{{ rec.nombre }}</h4>
+                      <p class="text-[10px] text-slate-500 italic mt-0.5">{{ rec.descripcion }}</p>
+                    </div>
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 rounded bg-violet-500/10 text-violet-400 border border-violet-500/20"
+                    >
+                      CÁMARA ID #{{ rec.product.idproducto }}
+                    </span>
+                  </div>
+
+                  <div class="border-t border-slate-850 pt-2 space-y-1 text-[10px] text-slate-400">
+                    <p class="font-bold uppercase tracking-wider text-slate-500 text-[8px] mb-1">
+                      Componentes Requeridos (BOM)
+                    </p>
+                    @for (det of rec.details; track det.ingredient.idproducto) {
+                      <div class="flex justify-between py-0.5">
+                        <span
+                          >Componente ID #{{ det.ingredient.idproducto }} ({{
+                            getProductById(det.ingredient.idproducto)?.nombre || 'Desconocido'
+                          }})</span
+                        >
+                        <span class="font-bold text-slate-300"
+                          >{{ det.quantityRequired }} unidad(es)</span
+                        >
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-6 shadow-sm h-fit">
+          <div>
+            <h3 class="text-lg font-bold text-violet-400">Creador de Receta (BOM)</h3>
+            <p class="text-xs text-slate-500">
+              Vincula cámaras con la lista de insumos de ensamble.
+            </p>
+          </div>
+
+          <form (submit)="saveRecipe(); $event.preventDefault()" class="space-y-4">
+            @if (recipeSuccess()) {
+              <div
+                class="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs font-semibold"
+              >
+                Receta guardada exitosamente en el sistema de producción.
+              </div>
+            }
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Nombre de la Receta</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="recipeName"
+                name="rName"
+                required
+                placeholder="Ej: Fórmula Alpha Premium"
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Cámara Destino (Terminado)</label
+              >
+              <select
+                [(ngModel)]="recipeProductTarget"
+                name="rProduct"
+                required
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none"
+              >
+                <option [value]="0">Selecciona una Cámara...</option>
+                @for (prod of products(); track prod.idproducto) {
+                  @if (prod.tipoProducto === 'PRODUCTO_TERMINADO') {
+                    <option [value]="prod.idproducto">
+                      {{ prod.nombre }} ({{ prod.codproducto }})
+                    </option>
+                  }
+                }
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Descripción</label
+              >
+              <textarea
+                rows="2"
+                [(ngModel)]="recipeDesc"
+                name="rDesc"
+                placeholder="Detalles de elaboración..."
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none resize-none"
+              ></textarea>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-center border-t border-slate-850 pt-2 mb-2">
+                <span class="text-[9px] uppercase font-bold text-slate-400"
+                  >Insumos Requeridos</span
+                >
+                <button
+                  type="button"
+                  (click)="addRecipeDetailRow()"
+                  class="text-[10px] text-cyan-400 font-bold hover:underline"
+                >
+                  + Agregar Insumo
+                </button>
+              </div>
+
+              @for (det of recipeDetails(); track $index; let idx = $index) {
+                <div class="flex items-center gap-2">
+                  <select
+                    [(ngModel)]="det.idproducto"
+                    [name]="'detProd_' + idx"
+                    class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-[10px] text-slate-100 focus:outline-none"
+                  >
+                    @for (raw of products(); track raw.idproducto) {
+                      @if (raw.tipoProducto === 'MATERIA_PRIMA') {
+                        <option [value]="raw.idproducto">{{ raw.nombre }}</option>
+                      }
+                    }
+                  </select>
+                  <input
+                    type="number"
+                    [(ngModel)]="det.quantity"
+                    [name]="'detQty_' + idx"
+                    min="1"
+                    required
+                    class="w-16 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-[10px] text-slate-100 focus:outline-none text-center"
+                  />
+                  <button
+                    type="button"
+                    (click)="removeRecipeDetailRow(idx)"
+                    class="text-rose-400 hover:text-rose-300 font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+              }
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-slate-800 hover:bg-slate-750 text-cyan-400 font-bold py-2.5 px-4 rounded-xl text-xs uppercase transition border border-cyan-500/20 active:scale-95"
+            >
+              Registrar Receta
+            </button>
+          </form>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'production') {
+      <div class="space-y-6" @fadeInUp>
+        <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-base font-bold text-violet-400 mb-4 border-b border-slate-850 pb-2">
+            Generar Orden de Producción
+          </h3>
+
+          <form
+            (submit)="createOrder(); $event.preventDefault()"
+            class="flex flex-wrap items-end gap-4"
+          >
+            <div class="flex-grow min-w-[200px]">
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Cámara a Fabricar</label
+              >
+              <select
+                [(ngModel)]="orderProductTarget"
+                name="ordTarget"
+                required
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none"
+              >
+                <option [value]="0">Selecciona Cámara...</option>
+                @for (prod of products(); track prod.idproducto) {
+                  @if (prod.tipoProducto === 'PRODUCTO_TERMINADO') {
+                    <option [value]="prod.idproducto">
+                      {{ prod.nombre }} ({{ prod.codproducto }})
+                    </option>
+                  }
+                }
+              </select>
+            </div>
+
+            <div class="w-24">
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Cantidad</label
+              >
+              <input
+                type="number"
+                [(ngModel)]="orderQuantity"
+                name="ordQty"
+                min="1"
+                required
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none text-center"
+              />
+            </div>
+
+            <div class="flex-grow min-w-[200px]">
+              <label class="block text-[9px] uppercase font-bold text-slate-400 mb-1"
+                >Planta Ensambladora</label
+              >
+              <select
+                [(ngModel)]="orderBranchTarget"
+                name="ordBranch"
+                required
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none"
+              >
+                <option [value]="0">Selecciona Planta / Fábrica...</option>
+                @for (b of branches(); track b.idsucursal) {
+                  <option [value]="b.idsucursal">{{ b.nombre }}</option>
+                }
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-gradient-to-r from-violet-600 to-indigo-650 hover:from-violet-500 hover:to-indigo-500 text-white font-bold py-2.5 px-6 rounded-xl text-xs uppercase tracking-wider transition active:scale-95"
+            >
+              Emitir Orden
+            </button>
+          </form>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 flex flex-col space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-850 pb-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Pendientes de Inicio (BOM)
+              </h3>
+              <span
+                class="bg-slate-950 border border-slate-850 px-2 py-0.5 rounded text-[10px] text-slate-500 font-bold font-mono"
+                >{{ getPendingOrders().length }}</span
+              >
+            </div>
+
+            <div class="space-y-4 flex-grow overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
+              @for (ord of getPendingOrders(); track ord.idorden) {
+                <div
+                  class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-3 relative group"
+                >
+                  <span class="absolute top-4 right-4 text-[9px] font-mono text-slate-650 font-bold"
+                    >#{{ ord.idorden }}</span
+                  >
+
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-200 pr-8">
+                      {{ getProductById(ord.product.idproducto)?.nombre }}
+                    </h4>
+                    <p class="text-[10px] text-cyan-400 font-bold mt-0.5">
+                      Lote: {{ ord.quantity }} unidades
+                    </p>
+                  </div>
+
+                  <div class="text-[9px] text-slate-500 space-y-1">
+                    <p>Fábrica: {{ getBranchById(ord.branch.idsucursal)?.nombre }}</p>
+                    <p>Emitida: {{ ord.fechaCreacion | date: 'short' }}</p>
+                  </div>
+
+                  <button
+                    (click)="startOrder(ord.idorden)"
+                    class="w-full bg-violet-600/10 hover:bg-violet-600 text-violet-400 hover:text-white border border-violet-500/20 py-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition active:scale-95"
+                  >
+                    Iniciar Ensamble (Consumir BOM)
+                  </button>
+                </div>
+              } @empty {
+                <p class="text-slate-600 text-[11px] text-center py-6">Sin órdenes pendientes.</p>
+              }
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 flex flex-col space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-850 pb-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Ensamblando (Cámaras en Proceso)
+              </h3>
+              <span
+                class="bg-slate-950 border border-slate-850 px-2 py-0.5 rounded text-[10px] text-violet-400 font-bold font-mono"
+                >{{ getProcessingOrders().length }}</span
+              >
+            </div>
+
+            <div class="space-y-4 flex-grow overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
+              @for (ord of getProcessingOrders(); track ord.idorden) {
+                <div
+                  class="bg-slate-950 p-4 rounded-xl border border-violet-500/10 space-y-3 relative group border-t-2 border-t-violet-500"
+                >
+                  <span class="absolute top-4 right-4 text-[9px] font-mono text-slate-600 font-bold"
+                    >#{{ ord.idorden }}</span
+                  >
+
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-200 pr-8">
+                      {{ getProductById(ord.product.idproducto)?.nombre }}
+                    </h4>
+                    <p class="text-[10px] text-violet-400 font-bold mt-0.5">
+                      Lote: {{ ord.quantity }} unidades
+                    </p>
+                  </div>
+
+                  <div class="text-[9px] text-slate-500 space-y-1">
+                    <p>Fábrica: {{ getBranchById(ord.branch.idsucursal)?.nombre }}</p>
+                    <p>Iniciado: {{ ord.fechaInicio | date: 'short' }}</p>
+                  </div>
+
+                  <button
+                    (click)="completeOrder(ord.idorden)"
+                    class="w-full bg-emerald-600/10 hover:bg-emerald-650 text-emerald-400 hover:text-white border border-emerald-500/20 py-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition active:scale-95"
+                  >
+                    Completar Lote (Añadir Stock)
+                  </button>
+                </div>
+              } @empty {
+                <p class="text-slate-600 text-[11px] text-center py-6">Sin ensamblajes activos.</p>
+              }
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-5 flex flex-col space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-850 pb-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Calibrados y Completados
+              </h3>
+              <span
+                class="bg-slate-950 border border-slate-850 px-2 py-0.5 rounded text-[10px] text-emerald-400 font-bold font-mono"
+                >{{ getCompletedOrders().length }}</span
+              >
+            </div>
+
+            <div class="space-y-4 flex-grow overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
+              @for (ord of getCompletedOrders(); track ord.idorden) {
+                <div
+                  class="bg-slate-950/60 p-4 rounded-xl border border-slate-850/60 space-y-2 relative"
+                >
+                  <span class="absolute top-4 right-4 text-[8px] font-mono text-slate-600 font-bold"
+                    >#{{ ord.idorden }}</span
+                  >
+                  <div
+                    class="w-2.5 h-2.5 rounded-full bg-emerald-500 absolute top-4 right-12 animate-pulse"
+                  ></div>
+
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-450">
+                      {{ getProductById(ord.product.idproducto)?.nombre }}
+                    </h4>
+                    <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">
+                      +{{ ord.quantity }} unidades añadidas
+                    </p>
+                  </div>
+
+                  <div
+                    class="text-[8px] text-slate-500 space-y-0.5 border-t border-slate-850/50 pt-2"
+                  >
+                    <p>Fábrica: {{ getBranchById(ord.branch.idsucursal)?.nombre }}</p>
+                    <p>Terminado: {{ ord.fechaFin | date: 'short' }}</p>
+                  </div>
+                </div>
+              } @empty {
+                <p class="text-slate-600 text-[11px] text-center py-6">
+                  Sin lotes terminados recientemente.
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'users') {
+      <div class="space-y-6" @fadeInUp>
+        <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-850 pb-3">
+            <div>
+              <h3 class="text-lg font-bold">Cuentas y Gestión de Roles</h3>
+              <p class="text-xs text-slate-500">
+                Asigna privilegios de administración (Jefe de Planta) u operador.
+              </p>
+            </div>
+            <button
+              (click)="exportAccountsToExcel()"
+              class="text-xs font-bold bg-slate-950 border border-slate-850 hover:border-slate-750 text-slate-350 px-3 py-1.5 rounded-xl transition"
+            >
+              Exportar Excel Cuentas
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-350">
+              <thead>
+                <tr
+                  class="text-[10px] uppercase font-bold text-slate-500 border-b border-slate-850 pb-2"
+                >
+                  <th class="py-2.5">ID</th>
+                  <th>Email / Usuario</th>
+                  <th>Alias / Nombre</th>
+                  <th>Ubicación</th>
+                  <th>Rol Operativo</th>
+                  <th class="text-right">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (acc of accounts(); track acc.idcuenta) {
+                  <tr class="border-b border-slate-850/60 hover:bg-slate-950/20">
+                    <td class="py-3 font-mono font-semibold">#{{ acc.idcuenta }}</td>
+                    <td class="font-bold text-slate-200">{{ acc.username }}</td>
+                    <td>{{ acc.alias || 'Sin alias' }}</td>
+                    <td>{{ acc.direccion ? acc.direccion + ', ' + acc.pais : 'Sin dirección' }}</td>
+                    <td>
+                      <span
+                        class="text-[9px] font-bold px-2 py-0.5 rounded border"
+                        [class.bg-violet-500/10]="acc.rol === 'ADMIN'"
+                        [class.text-violet-400]="acc.rol === 'ADMIN'"
+                        [class.border-violet-500/20]="acc.rol === 'ADMIN'"
+                        [class.bg-slate-950]="acc.rol === 'USER'"
+                        [class.text-slate-400]="acc.rol === 'USER'"
+                        [class.border-slate-800]="acc.rol === 'USER'"
+                      >
+                        {{ acc.rol }}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <button
+                        (click)="toggleUserRole(acc)"
+                        class="text-cyan-400 hover:text-cyan-300 font-bold text-[10px] uppercase"
+                      >
+                        Cambiar Rol
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-4 h-fit">
+            <h3 class="text-base font-bold text-violet-400 border-b border-slate-850 pb-2">
+              Generar Reporte PDF/Ficha
+            </h3>
+            <p class="text-xs text-slate-500">
+              Ejecuta rutinas de exportación para auditoría industrial.
+            </p>
+            <div class="flex flex-col gap-2 pt-2">
+              <button
+                (click)="loadReport('products')"
+                class="w-full bg-slate-950 hover:bg-slate-850 text-slate-300 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-850 transition"
+              >
+                Ficha Inventario Productos
+              </button>
+              <button
+                (click)="loadReport('branches')"
+                class="w-full bg-slate-950 hover:bg-slate-850 text-slate-300 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-850 transition"
+              >
+                Ficha Sucursales / Fábricas
+              </button>
+              <button
+                (click)="loadReport('accounts')"
+                class="w-full bg-slate-950 hover:bg-slate-850 text-slate-300 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-850 transition"
+              >
+                Ficha Auditoría Cuentas
+              </button>
+              <button
+                (click)="loadReport('production')"
+                class="w-full bg-slate-950 hover:bg-slate-850 text-slate-300 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-850 transition"
+              >
+                Ficha Órdenes de Ensamble
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 bg-slate-900 border border-slate-850 rounded-2xl p-6 space-y-3">
+            @if (reportContent()) {
+              <div class="flex justify-between items-center border-b border-slate-850 pb-2 mb-2">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-violet-400">
+                  {{ reportTitle() }}
+                </h4>
+                <button
+                  (click)="reportContent.set(null)"
+                  class="text-slate-500 hover:text-slate-300 text-xs font-bold uppercase"
+                >
+                  Cerrar Preview
+                </button>
+              </div>
+              <pre
+                class="bg-slate-950 p-4 rounded-xl text-[10px] font-mono text-emerald-400 overflow-x-auto whitespace-pre-wrap leading-relaxed shadow-inner border border-slate-900 max-h-[300px]"
+              >
+                {{ reportContent() }}
+              </pre>
+            } @else {
+              <div
+                class="py-16 text-center text-slate-500 text-xs flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl bg-slate-950/20"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8 text-slate-650 mb-2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5A3.375 3.375 0 0010.125 2.25H3.75m0 0v18.75m0-18.75h14.25m-14.25 0l1.125 1.125m4.5 15.75h9m-9-3h9m-9-3h9m-9-3h9m-9-3h9m-9-3h9"
+                  />
+                </svg>
+                <span
+                  >Selecciona una ficha de reporte de la izquierda para previsualizar los
+                  registros.</span
+                >
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (currentTab() === 'ai') {
+      <div class="h-[calc(100vh-80px)] flex flex-col justify-between" @fadeInUp>
+        <div class="border-b border-slate-900 pb-4">
+          <h2 class="text-2xl font-extrabold tracking-tight">Copiloto Inteligente de Planta</h2>
+          <p class="text-xs text-slate-400">
+            Analiza recetas registradas, rendimiento de sucursales y insumos necesarios en el
+            taller.
+          </p>
+        </div>
+
+        <div class="flex-grow my-4 overflow-y-auto space-y-4 pr-2 custom-scrollbar flex flex-col">
+          @for (msg of chatMessages(); track msg.time) {
+            <div
+              class="max-w-[75%] rounded-2xl p-4 text-xs leading-relaxed"
+              [class.bg-slate-900]="msg.sender === 'ai'"
+              [class.border]="msg.sender === 'ai'"
+              [class.border-slate-850]="msg.sender === 'ai'"
+              [class.text-slate-200]="msg.sender === 'ai'"
+              [class.self-start]="msg.sender === 'ai'"
+              [class.bg-gradient-to-r]="msg.sender === 'user'"
+              [class.from-violet-650]="msg.sender === 'user'"
+              [class.to-indigo-650]="msg.sender === 'user'"
+              [class.text-white]="msg.sender === 'user'"
+              [class.self-end]="msg.sender === 'user'"
+            >
+              <span
+                class="block text-[8px] font-bold uppercase tracking-wider mb-1 text-slate-500"
+                [class.text-slate-400]="msg.sender === 'user'"
+              >
+                {{ msg.sender === 'ai' ? 'Copiloto de Planta' : 'Tú' }} •
+                {{ msg.time | date: 'shortTime' }}
+              </span>
+              <p class="font-medium font-sans whitespace-pre-line">{{ msg.text }}</p>
+            </div>
+          }
+          @if (aiLoading()) {
+            <div
+              class="self-start bg-slate-900 border border-slate-850 rounded-2xl p-4 text-xs text-slate-400 flex items-center gap-2"
+            >
+              <span class="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce"></span>
+              <span
+                class="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce [animation-delay:0.2s]"
+              ></span>
+              <span
+                class="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce [animation-delay:0.4s]"
+              ></span>
+              Analizando estructura BOM...
+            </div>
+          }
+        </div>
+
+        <form
+          (submit)="sendCopilotQuery(); $event.preventDefault()"
+          class="flex gap-2 bg-slate-900 p-2 rounded-2xl border border-slate-850 shadow-md"
+        >
+          <input
+            type="text"
+            [(ngModel)]="chatInput"
+            name="chatPrompt"
+            required
+            placeholder="Hazle una consulta al copiloto (Ej: ¿Qué recetas tenemos registradas y qué insumos consumen?)"
+            class="flex-grow bg-transparent border-0 px-4 py-2 text-xs text-slate-100 placeholder:text-slate-650 focus:outline-none"
+          />
+          <button
+            type="submit"
+            [disabled]="aiLoading() || !chatInput()"
+            class="bg-gradient-to-r from-violet-600 to-indigo-650 text-white p-2.5 rounded-xl transition duration-150 active:scale-95 disabled:opacity-40"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-4 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    }
+
+    @if (showProductModal()) {
+      <div
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        @fadeIn
+      >
+        <div
+          class="w-full max-w-lg bg-slate-900 border border-slate-850 rounded-2xl p-6 shadow-2xl space-y-4"
+          @fadeInUp
+        >
+          <div class="flex justify-between items-center border-b border-slate-850 pb-2">
+            <h3 class="text-base font-bold text-violet-400">
+              {{
+                editingProductId() ? 'Modificar Parcialmente Producto' : 'Registrar Nuevo Producto'
+              }}
+            </h3>
+            <button
+              (click)="showProductModal.set(false)"
+              class="text-slate-500 hover:text-slate-300"
+            >
+              ✕
+            </button>
+          </div>
+
+          <form (submit)="saveProduct(); $event.preventDefault()" class="space-y-4 text-xs">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Tipo de Producto</label
+                >
+                <select
+                  [(ngModel)]="productForm.tipoProducto"
+                  name="pType"
+                  required
+                  [disabled]="editingProductId() !== null"
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                >
+                  <option value="MATERIA_PRIMA">Materia Prima (Componente)</option>
+                  <option value="PRODUCTO_TERMINADO">Producto Terminado (Cámara)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Código Único (Codproducto)</label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="productForm.codproducto"
+                  name="pCode"
+                  required
+                  placeholder="Ej: RAW001 o PROD001"
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                >Nombre Técnico</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="productForm.nombre"
+                name="pName"
+                required
+                placeholder="Nombre..."
+                class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+              />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Categoría</label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="productForm.categoria"
+                  name="pCat"
+                  required
+                  placeholder="Ej: Lentes, Sensores, DSLR..."
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Cantidad Inicial (Stock)</label
+                >
+                <input
+                  type="number"
+                  [(ngModel)]="productForm.stock"
+                  name="pStock"
+                  required
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none text-center"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Precio Compra ($)</label
+                >
+                <input
+                  type="number"
+                  step="0.01"
+                  [(ngModel)]="productForm.preciocompra"
+                  name="pPriceC"
+                  required
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none text-center"
+                />
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                  >Precio Venta ($)</label
+                >
+                <input
+                  type="number"
+                  step="0.01"
+                  [(ngModel)]="productForm.precioventa"
+                  name="pPriceV"
+                  required
+                  class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none text-center"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                >Fecha de Expiración / Control</label
+              >
+              <input
+                type="datetime-local"
+                [(ngModel)]="productForm.fechavencimiento"
+                name="pExp"
+                required
+                class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none text-center"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-violet-600 to-indigo-650 hover:from-violet-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl uppercase transition active:scale-95"
+            >
+              Confirmar Operación
+            </button>
+          </form>
+        </div>
+      </div>
+    }
+
+    @if (showBranchModal()) {
+      <div
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        @fadeIn
+      >
+        <div
+          class="w-full max-w-md bg-slate-900 border border-slate-850 rounded-2xl p-6 shadow-2xl space-y-4"
+          @fadeInUp
+        >
+          <div class="flex justify-between items-center border-b border-slate-850 pb-2">
+            <h3 class="text-base font-bold text-violet-400">
+              {{ editingBranchId() ? 'Modificar Sucursal' : 'Agregar Nueva Planta / Sucursal' }}
+            </h3>
+            <button
+              (click)="showBranchModal.set(false)"
+              class="text-slate-500 hover:text-slate-300"
+            >
+              ✕
+            </button>
+          </div>
+
+          <form (submit)="saveBranch(); $event.preventDefault()" class="space-y-4 text-xs">
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                >Nombre de la Sucursal</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="branchForm.nombre"
+                name="bName"
+                required
+                placeholder="Ej: Planta de Ensamblaje Este"
+                class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-[9px] uppercase font-bold text-slate-500 mb-1"
+                >Dirección Física</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="branchForm.direccion"
+                name="bDir"
+                required
+                placeholder="Calle, Ciudad..."
+                class="w-full bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-violet-600 to-indigo-650 hover:from-violet-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl uppercase transition active:scale-95"
+            >
+              Guardar Sucursal
+            </button>
+          </form>
+        </div>
+      </div>
+    }
+  </main>
+</div>

@@ -1,0 +1,365 @@
+<div
+  class="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 relative overflow-hidden"
+  @fadeIn
+>
+  <div
+    class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none"
+  ></div>
+  <div
+    class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-indigo-500/5 blur-3xl pointer-events-none"
+  ></div>
+
+  <a
+    routerLink="/"
+    class="absolute top-8 left-8 flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-cyan-400 transition uppercase tracking-wider group"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2.5"
+      stroke="currentColor"
+      class="w-4 h-4 group-hover:-translate-x-1 transition duration-150"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      />
+    </svg>
+    Volver al Inicio
+  </a>
+
+  <div
+    class="w-full max-w-md bg-slate-900 border border-slate-850 rounded-2xl shadow-2xl p-8 relative z-10"
+    @fadeInUp
+  >
+    <div class="flex flex-col items-center justify-center text-center mb-8">
+      <div
+        class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 mb-3"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2.5"
+          stroke="currentColor"
+          class="w-7 h-7"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+          />
+        </svg>
+      </div>
+      <h2
+        class="text-2xl font-black bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent tracking-wider"
+      >
+        NOVA SYSTEM
+      </h2>
+      <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mt-1">
+        Control de Calidad y Ensamblaje
+      </p>
+    </div>
+
+    @if (errorMessage()) {
+      <div
+        class="mb-4 p-3 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl text-xs font-semibold flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4 shrink-0"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+          />
+        </svg>
+        <span>{{ errorMessage() }}</span>
+      </div>
+    }
+    @if (successMessage()) {
+      <div
+        class="mb-4 p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs font-semibold flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4 shrink-0"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0110 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043a3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.746 3.746 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0114 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+          />
+        </svg>
+        <span>{{ successMessage() }}</span>
+      </div>
+    }
+
+    @if (activeTab() === 'login') {
+      <form (submit)="handleLogin(); $event.preventDefault()" class="space-y-4">
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Nombre de Usuario (Email)</label
+          >
+          <input
+            type="email"
+            [(ngModel)]="username"
+            name="email"
+            required
+            placeholder="correo@gmail.com"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-[10px] uppercase font-bold text-slate-400">Contraseña</label>
+            <button
+              type="button"
+              (click)="changeTab('recuperar')"
+              class="text-[10px] text-cyan-400 hover:underline"
+            >
+              ¿La olvidaste?
+            </button>
+          </div>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            placeholder="••••••••"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loading()"
+          class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-400 hover:to-indigo-400 disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-500 text-white font-black py-3 px-4 rounded-xl text-xs uppercase transition tracking-wider active:scale-95 flex items-center justify-center gap-2"
+        >
+          @if (loading()) {
+            <span
+              class="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"
+            ></span>
+            Verificando...
+          } @else {
+            Ingresar al Panel
+          }
+        </button>
+
+        <div class="text-center text-xs text-slate-500 pt-2">
+          ¿No tienes una cuenta de fabricante?
+          <button
+            type="button"
+            (click)="changeTab('register')"
+            class="text-cyan-400 hover:underline font-semibold ml-1"
+          >
+            Regístrate
+          </button>
+        </div>
+      </form>
+    }
+
+    @if (activeTab() === 'register') {
+      <form (submit)="handleRegister(); $event.preventDefault()" class="space-y-4">
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Usuario / Email Corporativo</label
+          >
+          <input
+            type="email"
+            [(ngModel)]="registerUsername"
+            name="email"
+            required
+            placeholder="ingeniero@nova.com"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            [(ngModel)]="registerPassword"
+            name="password"
+            required
+            placeholder="••••••••"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Confirmar Contraseña</label
+          >
+          <input
+            type="password"
+            [(ngModel)]="registerConfirmPassword"
+            name="confirmPassword"
+            required
+            placeholder="••••••••"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loading()"
+          class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-400 hover:to-indigo-400 disabled:from-slate-850 disabled:to-slate-850 disabled:text-slate-500 text-white font-black py-3 px-4 rounded-xl text-xs uppercase transition tracking-wider active:scale-95 flex items-center justify-center gap-2"
+        >
+          @if (loading()) {
+            <span
+              class="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"
+            ></span>
+            Registrando...
+          } @else {
+            Crear Nueva Cuenta
+          }
+        </button>
+
+        <div class="text-center text-xs text-slate-500 pt-2">
+          ¿Ya tienes cuenta?
+          <button
+            type="button"
+            (click)="changeTab('login')"
+            class="text-cyan-400 hover:underline font-semibold ml-1"
+          >
+            Inicia sesión
+          </button>
+        </div>
+      </form>
+    }
+
+    @if (activeTab() === 'recuperar') {
+      <form (submit)="handleRecover(); $event.preventDefault()" class="space-y-4">
+        <p class="text-xs text-slate-400 text-center leading-relaxed">
+          Ingresa tu dirección de correo electrónico y te enviaremos un token temporal para
+          reestablecer tu contraseña corporativa.
+        </p>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Email</label>
+          <input
+            type="email"
+            [(ngModel)]="recoverEmail"
+            name="email"
+            required
+            placeholder="correo@gmail.com"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loading()"
+          class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-400 hover:to-indigo-400 disabled:from-slate-850 disabled:to-slate-850 disabled:text-slate-500 text-white font-black py-3 px-4 rounded-xl text-xs uppercase transition tracking-wider active:scale-95 flex items-center justify-center gap-2"
+        >
+          @if (loading()) {
+            <span
+              class="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"
+            ></span>
+            Solicitando...
+          } @else {
+            Generar Token de Recuperación
+          }
+        </button>
+
+        <div class="text-center text-xs text-slate-500 pt-2">
+          <button
+            type="button"
+            (click)="changeTab('login')"
+            class="text-slate-400 hover:text-slate-300 font-semibold underline"
+          >
+            Volver a Ingreso
+          </button>
+        </div>
+      </form>
+    }
+
+    @if (activeTab() === 'cambiar-password') {
+      <form (submit)="handleResetPassword(); $event.preventDefault()" class="space-y-4">
+        <p class="text-xs text-slate-400 text-center leading-relaxed">
+          Ingresa el token temporal recibido y tu nueva clave de acceso.
+        </p>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Email</label>
+          <input
+            type="email"
+            [(ngModel)]="resetEmail"
+            name="email"
+            required
+            placeholder="correo@gmail.com"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Token de Seguridad</label
+          >
+          <input
+            type="text"
+            [(ngModel)]="resetToken"
+            name="token"
+            required
+            placeholder="d1364738-..."
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 font-mono focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1"
+            >Nueva Contraseña</label
+          >
+          <input
+            type="password"
+            [(ngModel)]="resetNewPassword"
+            name="newPassword"
+            required
+            placeholder="••••••••"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loading()"
+          class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-400 hover:to-indigo-400 disabled:from-slate-850 disabled:to-slate-850 disabled:text-slate-500 text-slate-950 font-black py-3 px-4 rounded-xl text-xs uppercase transition tracking-wider active:scale-95 flex items-center justify-center gap-2"
+        >
+          @if (loading()) {
+            <span
+              class="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"
+            ></span>
+            Reestableciendo...
+          } @else {
+            Modificar Clave
+          }
+        </button>
+
+        <div class="text-center text-xs text-slate-500 pt-2 flex flex-col gap-2">
+          <button
+            type="button"
+            (click)="changeTab('recuperar')"
+            class="text-cyan-400 hover:underline"
+          >
+            Re-enviar token
+          </button>
+          <button
+            type="button"
+            (click)="changeTab('login')"
+            class="text-slate-400 hover:text-slate-300 font-semibold underline"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+</div>

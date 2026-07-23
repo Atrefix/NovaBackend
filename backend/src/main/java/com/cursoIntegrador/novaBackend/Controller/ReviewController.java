@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping({"/reviews", "/quality-controls"})
 @RequiredArgsConstructor
 public class ReviewController {
 

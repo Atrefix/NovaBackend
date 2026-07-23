@@ -10,6 +10,7 @@ import com.cursoIntegrador.novaBackend.Model.DTO.Purchase.PurchaseProductDTO;
 import com.cursoIntegrador.novaBackend.Model.DTO.Purchase.PurchaseRequestDTO;
 import com.cursoIntegrador.novaBackend.Model.DTO.Purchase.PurhcaseHistoryDTO;
 import com.cursoIntegrador.novaBackend.Model.Entity.Cuenta;
+import com.cursoIntegrador.novaBackend.Model.Entity.ProductType;
 import com.cursoIntegrador.novaBackend.Model.Entity.Purchase;
 import com.cursoIntegrador.novaBackend.Model.Entity.PurchaseDetails;
 import com.cursoIntegrador.novaBackend.Model.Security.CustomUserDetails;
@@ -47,6 +48,15 @@ public class PurchaseService {
         for (PurchaseProductDTO dtoProduct : purchaseDTO.getProductos()) {
             var product = productRepository.findById(dtoProduct.getIdProducto())
                     .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + dtoProduct.getIdProducto()));
+
+            if (product.getTipoProducto() != ProductType.MATERIA_PRIMA) {
+                throw new IllegalArgumentException(
+                        "Solo se pueden abastecer productos clasificados como MATERIA_PRIMA. El producto "
+                                + product.getNombre() + " es de tipo " + product.getTipoProducto());
+            }
+
+            product.setStock(product.getStock() + dtoProduct.getQuantity());
+            productRepository.save(product);
 
             PurchaseDetails detail = new PurchaseDetails();
             detail.setProduct(product);

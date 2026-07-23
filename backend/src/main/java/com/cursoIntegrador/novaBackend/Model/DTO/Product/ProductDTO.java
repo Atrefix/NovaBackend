@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.cursoIntegrador.novaBackend.Model.Entity.Product;
+import com.cursoIntegrador.novaBackend.Model.Entity.ProductType;
 
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class ProductDTO {
     private BigDecimal precioventa;
     private LocalDateTime fechavencimiento;
     private String imageUrl;
+    private ProductType tipoProducto;
 
     public ProductDTO(Product product) {
         this.id = product.getIdproducto();
@@ -26,5 +28,6 @@ public class ProductDTO {
         this.stock = product.getStock();
         this.precioventa = product.getPrecioventa();
         this.fechavencimiento = product.getFechavencimiento();
+        this.tipoProducto = product.getTipoProducto();
     }
 }

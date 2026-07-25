@@ -36,7 +36,7 @@ public class BranchControllerTest {
         @BeforeEach
         void setUp() {
                 sucursalEjemplo = new Branch();
-                sucursalEjemplo.setIdsucursal(1);
+                sucursalEjemplo.setIdSucursal(1);
                 sucursalEjemplo.setNombre("Sucursal Centro");
                 sucursalEjemplo.setDireccion("Av. Principal 123");
         }
@@ -44,7 +44,7 @@ public class BranchControllerTest {
         @Test
         void testListarSucursales_Success() {
                 Branch sucursal2 = new Branch();
-                sucursal2.setIdsucursal(2);
+                sucursal2.setIdSucursal(2);
                 sucursal2.setNombre("Sucursal Norte");
                 sucursal2.setDireccion("Calle Norte 456");
 

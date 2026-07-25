@@ -16,15 +16,16 @@ public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Idsucursal;
+    @Column(name = "idsucursal")
+    private Integer idSucursal;
 
     @NotBlank(message = "El nombre de la sucursal no puede estar vacío")
     @Size(max = 100, message = "El nombre de la sucursal no puede superar los 100 caracteres")
     @Column(length = 100, nullable = false)
-    private String Nombre;
+    private String nombre;
 
     @NotBlank(message = "La dirección no puede estar vacía")
     @Size(max = 200, message = "La dirección no puede superar los 200 caracteres")
     @Column(length = 200, nullable = false)
-    private String Direccion;
+    private String direccion;
 }

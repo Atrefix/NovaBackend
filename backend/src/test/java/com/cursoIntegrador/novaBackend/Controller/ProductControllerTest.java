@@ -157,13 +157,14 @@ public class ProductControllerTest {
 
     @Test
     void testGetReport_Success() throws Exception {
-        byte[] pdf = new byte[] {1,2,3};
+        byte[] pdf = new byte[] { 1, 2, 3 };
         when(productService.getReport()).thenReturn(pdf);
 
         ResponseEntity<?> response = controller.getReportProduct();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("attachment; filename=reporte.pdf", response.getHeaders().getFirst(HttpHeaders.CONTENT_DISPOSITION));
+        assertEquals("attachment; filename=reporte.pdf",
+                response.getHeaders().getFirst(HttpHeaders.CONTENT_DISPOSITION));
         assertEquals(pdf, response.getBody());
         verify(productService).getReport();
     }

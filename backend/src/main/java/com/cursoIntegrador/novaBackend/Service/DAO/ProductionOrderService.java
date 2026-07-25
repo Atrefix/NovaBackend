@@ -77,9 +77,9 @@ public class ProductionOrderService {
                 .orElseThrow(() -> new IllegalArgumentException("No se puede crear una orden de producción para '"
                         + product.getNombre() + "' porque no tiene una receta (BOM) registrada."));
 
-        var branch = branchRepository.findById(order.getBranch().getIdsucursal())
+        var branch = branchRepository.findById(order.getBranch().getIdSucursal())
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "Sucursal no encontrada: " + order.getBranch().getIdsucursal()));
+                        "Sucursal no encontrada: " + order.getBranch().getIdSucursal()));
 
         order.setSupervisor(supervisor);
         order.setProduct(product);

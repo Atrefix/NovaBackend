@@ -10,5 +10,6 @@ import com.cursoIntegrador.novaBackend.Model.Entity.ProductionOrder;
 @Repository
 public interface ProductionOrderRepository extends JpaRepository<ProductionOrder, Long> {
     List<ProductionOrder> findAllBySupervisor_Idcuenta(Integer idcuenta);
-    List<ProductionOrder> findAllByBranch_Idsucursal(Integer idsucursal);
+
+    List<ProductionOrder> findAllByBranch_IdSucursal(Integer idSucursal);
 }

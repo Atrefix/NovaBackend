@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: nova-backend
+    runtime: docker
+    region: ohio
+    plan: free
+
+    buildCommand: ""
+    startCommand: ""
+
+    healthCheckPath: /actuator/health
+    healthCheckInterval: 10
+
+    autoDeploy: true
+
+    envVars:
+      - key: DATABASE_URL
+        scope: build,runtime
+        value: "" # Establecer en Render.com dashboard: jdbc:postgresql://[host]:[port]/[database]?sslmode=require
+
+      - key: DB_USER
+        scope: build,runtime
+        value: "" # Establecer en Render.com dashboard
+
+      - key: DB_PASSWORD
+        scope: build,runtime
+        value: "" # Establecer en Render.com dashboard como variable privada
+
+      - key: SPRING_PROFILES_ACTIVE
+        scope: build,runtime
+        value: production
+
+      - key: PORT
+        scope: runtime
+        value: 8080 # Render.com usará automáticamente una variable PORT
+
+    # Nota: El puerto será asignado automáticamente por Render.com
+
+# Configuración de despliegue desde Git
+deploy:
+  branch: main # Cambiar según tu rama principal

@@ -1,0 +1,46 @@
+# Maven
+target/
+*.jar
+*.war
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.classpath
+*.project
+.settings/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+logs/
+app.log
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Environment
+.env
+.env.local
+secret-credentials.properties
+
+# Test
+src/test/

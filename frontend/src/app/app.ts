@@ -16,7 +16,6 @@ export class App implements OnInit {
   private readonly router = inject(Router);
 
   recentNotification = signal<string | null>(null);
-  showQuickAccess = signal<boolean>(false);
 
   constructor() {
     effect(() => {
@@ -44,35 +43,5 @@ export class App implements OnInit {
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
-
-  toggleMock() {
-    this.nova.mockMode.update(val => !val);
-    const modeStr = this.nova.mockMode() ? 'Simulado' : 'Live API (Conectado a puerto 8080)';
-    this.nova.addNotification(`Modo de datos cambiado a: ${modeStr}`);
-  }
-
-  quickLogin(role: 'admin' | 'client') {
-    const email = role === 'admin' ? 'gaylin773@gmail.com' : 'testuser@gmail.com';
-    this.nova.login(email, 'prueba123').subscribe({
-      next: () => {
-        this.showQuickAccess.set(false);
-        if (role === 'admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/client']);
-        }
-      },
-      error: (err) => {
-        alert(err.message);
-      }
-    });
-  }
-
-  logout() {
-    this.nova.logout().subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      }
-    });
-  }
 }
+

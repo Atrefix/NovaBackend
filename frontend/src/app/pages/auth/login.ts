@@ -20,7 +20,7 @@ export class Login {
   // Input Fields
   username = signal<string>('');
   password = signal<string>('');
-  
+
   registerUsername = signal<string>('');
   registerPassword = signal<string>('');
   registerConfirmPassword = signal<string>('');
@@ -58,7 +58,7 @@ export class Login {
     this.nova.login(this.username(), this.password()).subscribe({
       next: (res) => {
         this.loading.set(false);
-        this.nova.addNotification(`Bienvenido de nuevo, ${res.user?.alias || res.user?.username || 'Usuario'}`);
+        this.nova.addNotification(`Bienvenido de nuevo, ${res.loginData?.alias || 'Usuario'}`);
         if (this.nova.isAdmin()) {
           this.router.navigate(['/admin']);
         } else {
@@ -117,7 +117,7 @@ export class Login {
         this.loading.set(false);
         this.successMessage.set('Token de recuperación enviado. Revisa tu bandeja.');
         this.resetEmail.set(this.recoverEmail());
-        
+
         // Auto-fill token if in mock mode for faster testing
         if (this.nova.mockMode()) {
           this.resetToken.set('d1364738-e432-46f7-bdd2-3cd17aff81cf');
